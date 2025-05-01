@@ -56,13 +56,13 @@
             // Prikaži banner za instalaciju ako je potrebno
             setTimeout(showInstallPrompt, 1500); // Malo odgodimo da korisnik prvo vidi sadržaj stranice
             
-            // Ako je aplikacija pokrenuta kao PWA, odmah preusmjeri
+            // Ako je aplikacija pokrenuta kao PWA, odmah preusmjeri - ALI samo ako je PWA
             if (isPWA() && noRedirect !== 'true') {
                 redirectToApp();
                 return;
             }
             
-            // Ako je zadano automatsko preusmjeravanje preko URL-a
+            // Auto-preusmjeravanje samo ako je eksplicitno zatraženo parametrom
             if (autoRedirect === 'true' && noRedirect !== 'true') {
                 const countdownElement = document.getElementById('countdown');
                 let seconds = 5;
@@ -93,7 +93,7 @@
             <span class="banner-close" onclick="closeBanner('ios-banner')">&times;</span>
             <strong>Dodajte na početni zaslon:</strong>
             <ol>
-                <li>Kliknite <img src="icons/ios-share.png" alt="share" class="small-icon"> (Dijeli) na dnu ekrana</li>
+                <li>Kliknite <span class="icon-text">↑</span> (Dijeli) na dnu ekrana</li>
                 <li>Odaberite "Dodaj na početni zaslon"</li>
                 <li>Kliknite "Dodaj" u gornjem desnom kutu</li>
             </ol>
@@ -106,7 +106,7 @@
             <span class="banner-close" onclick="closeBanner('android-banner')">&times;</span>
             <strong>Dodajte na početni zaslon:</strong>
             <ol>
-                <li>Kliknite <img src="icons/android-menu.png" alt="menu" class="small-icon"> (izbornik) gore desno</li>
+                <li>Kliknite <span class="icon-text">⋮</span> (izbornik) gore desno</li>
                 <li>Odaberite "Dodaj na početni zaslon"</li>
                 <li>Kliknite "Dodaj" na prozoru koji se pojavi</li>
             </ol>
@@ -128,7 +128,7 @@
             <p>Za lakši pristup kasnije, dodajte ovu aplikaciju na početni zaslon vašeg mobitela:</p>
             <ul>
                 <li><strong>Android (Chrome):</strong> Izbornik (tri točke ⋮) → "Dodaj na početni zaslon"</li>
-                <li><strong>iPhone (Safari):</strong> Dijeljenje (strelica gore) → "Dodaj na početni zaslon"</li>
+                <li><strong>iPhone (Safari):</strong> Dijeljenje (strelica gore ↑) → "Dodaj na početni zaslon"</li>
             </ul>
         </div>
         
