@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promina-Drnis Aplikacija</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <meta name="theme-color" content="#0066cc">
+    <!-- iOS podrška -->
+    <link rel="apple-touch-icon" href="icons/grbPD_bez_natpisa_pozadina.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script>
+        // URL vaše web aplikacije - zamijenite sa stvarnim URL-om
+        const TARGET_URL = 'https://promina-drnis-app.vercel.app/login';
+        
+        // Funkcija za preusmjeravanje - sada samo na klik
+        function redirectToApp() {
+            window.location.href = TARGET_URL;
+        }
+        
+        // Dodajemo opciju automatskog preusmjeravanja nakon 10 sekundi
+        // ali samo ako je korisnik omogućio to u URL-u (npr. ?autoredirect=true)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const autoRedirect = urlParams.get('autoredirect');
+            
+            if (autoRedirect === 'true') {
+                const countdownElement = document.getElementById('countdown');
+                let seconds = 10;
+                
+                // Prikaz odbrojavanja
+                const countdownInterval = setInterval(function() {
+                    countdownElement.textContent = seconds;
+                    seconds--;
+                    
+                    if (seconds < 0) {
+                        clearInterval(countdownInterval);
+                        redirectToApp();
+                    }
+                }, 1000);
+                
+                // Prikaz elementa s odbrojavanjem
+                document.getElementById('countdown-container').style.display = 'block';
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img src="icons/grbPD_bez_natpisa_pozadina.png" alt="Promina-Drnis Logo" class="logo">
+        <h1>Promina-Drnis</h1>
+        <p>Dobrodošli u PD Mobilnu aplikaciju!</p>
+        
+        <div class="info-text">
+            <p>Ova aplikacija služi kao poveznica na glavnu web aplikaciju Promina-Drnis.</p>
+            <p>Ako je ovo vaš prvi posjet, pogledajte informacije ispod:</p>
+        </div>
+        
+        <div class="card">
+            <h2>Kako koristiti aplikaciju?</h2>
+            <ol>
+                <li>Kliknite na gumb "Pristupi aplikaciji" ispod</li>
+                <li>Prijavi se sa svojim korisničkim podacima</li>
+                <li>Uživaj u svim mogućnostima Promina-Drnis sustava</li>
+            </ol>
+        </div>
+        
+        <div class="card">
+            <h2>Instalacija na početni zaslon</h2>
+            <p>Za brži pristup, instalirajte aplikaciju na početni zaslon:</p>
+            <ul>
+                <li><strong>Android (Chrome):</strong> Izbornik (tri točke) → Dodaj na početni zaslon</li>
+                <li><strong>iOS (Safari):</strong> Dijeljenje → Dodaj na početni zaslon</li>
+            </ul>
+        </div>
+        
+        <div id="countdown-container" style="display: none;">
+            <p>Automatsko preusmjeravanje za <span id="countdown">10</span> sekundi...</p>
+        </div>
+        
+        <button onclick="redirectToApp()" class="primary-button">Pristupi aplikaciji</button>
+    </div>
+
+    <script>
+        // Registracija service workera za PWA funkcionalnost
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registriran uspješno:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('ServiceWorker registracija nije uspjela:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
