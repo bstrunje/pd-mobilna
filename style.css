@@ -10,6 +10,55 @@ body {
     color: #333;
 }
 
+/* Stilovi za banere instalacije */
+.install-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0066cc;
+    color: white;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.banner-content {
+    padding: 12px 15px;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.banner-content ol {
+    margin: 10px 0 5px 25px;
+    padding: 0;
+}
+
+.banner-content li {
+    margin-bottom: 5px;
+}
+
+.banner-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.banner-close:hover {
+    opacity: 1;
+}
+
+.small-icon {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin: 0 3px;
+}
+
 .container {
     text-align: center;
     padding: 2rem;
@@ -18,6 +67,7 @@ body {
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 70px; /* Dodajemo margin za banere */
 }
 
 .logo {
@@ -25,7 +75,9 @@ body {
     height: 120px;
     margin-bottom: 1rem;
     object-fit: contain;
+    /* Dodajemo transparentnost pozadine */
     background-color: transparent;
+    /* Omogućujemo da se vidi samo grb */
     border-radius: 0;
     box-shadow: none;
 }
@@ -61,6 +113,15 @@ p {
     margin: 1rem 0;
     text-align: left;
     border-left: 4px solid #0066cc;
+}
+
+/* Istaknuta kartica */
+.highlight-card {
+    background-color: #e6f3ff;
+    border-left: 4px solid #0066cc;
+    border-top: 2px solid #0066cc;
+    border-bottom: 2px solid #0066cc;
+    border-right: 2px solid #0066cc;
 }
 
 .card ol, .card ul {

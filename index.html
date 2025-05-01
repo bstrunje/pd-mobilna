@@ -28,11 +28,33 @@
                    document.referrer.includes('android-app://');
         }
         
+        // Provjera za prikaz bannera instalacije
+        function showInstallPrompt() {
+            // Detekcija mobilnog uređaja
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            // Provjera je li već instalirano kao PWA
+            if (isMobile && !isPWA()) {
+                // Detektiraj browser
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                const isAndroid = /Android/.test(navigator.userAgent);
+                
+                if (isIOS) {
+                    document.getElementById('ios-banner').style.display = 'block';
+                } else if (isAndroid) {
+                    document.getElementById('android-banner').style.display = 'block';
+                }
+            }
+        }
+        
         // Učitavanje
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const autoRedirect = urlParams.get('autoredirect');
             const noRedirect = urlParams.get('noredirect');
+            
+            // Prikaži banner za instalaciju ako je potrebno
+            setTimeout(showInstallPrompt, 1500); // Malo odgodimo da korisnik prvo vidi sadržaj stranice
             
             // Ako je aplikacija pokrenuta kao PWA, odmah preusmjeri
             if (isPWA() && noRedirect !== 'true') {
@@ -58,9 +80,39 @@
                 document.getElementById('countdown-container').style.display = 'block';
             }
         };
+        
+        function closeBanner(id) {
+            document.getElementById(id).style.display = 'none';
+        }
     </script>
 </head>
 <body>
+    <!-- Banner za iOS uređaje -->
+    <div id="ios-banner" class="install-banner">
+        <div class="banner-content">
+            <span class="banner-close" onclick="closeBanner('ios-banner')">&times;</span>
+            <strong>Dodajte na početni zaslon:</strong>
+            <ol>
+                <li>Kliknite <img src="icons/ios-share.png" alt="share" class="small-icon"> (Dijeli) na dnu ekrana</li>
+                <li>Odaberite "Dodaj na početni zaslon"</li>
+                <li>Kliknite "Dodaj" u gornjem desnom kutu</li>
+            </ol>
+        </div>
+    </div>
+    
+    <!-- Banner za Android uređaje -->
+    <div id="android-banner" class="install-banner">
+        <div class="banner-content">
+            <span class="banner-close" onclick="closeBanner('android-banner')">&times;</span>
+            <strong>Dodajte na početni zaslon:</strong>
+            <ol>
+                <li>Kliknite <img src="icons/android-menu.png" alt="menu" class="small-icon"> (izbornik) gore desno</li>
+                <li>Odaberite "Dodaj na početni zaslon"</li>
+                <li>Kliknite "Dodaj" na prozoru koji se pojavi</li>
+            </ol>
+        </div>
+    </div>
+
     <div class="container">
         <img src="icons/grbPD_bez_natpisa_pozadina.png" alt="Promina-Drnis Logo" class="logo">
         <h1>Promina-Drnis</h1>
@@ -71,6 +123,15 @@
             <p>Ako je ovo vaš prvi posjet, pogledajte informacije ispod:</p>
         </div>
         
+        <div class="card highlight-card">
+            <h2>📱 Dodajte na početni zaslon!</h2>
+            <p>Za lakši pristup kasnije, dodajte ovu aplikaciju na početni zaslon vašeg mobitela:</p>
+            <ul>
+                <li><strong>Android (Chrome):</strong> Izbornik (tri točke ⋮) → "Dodaj na početni zaslon"</li>
+                <li><strong>iPhone (Safari):</strong> Dijeljenje (strelica gore) → "Dodaj na početni zaslon"</li>
+            </ul>
+        </div>
+        
         <div class="card">
             <h2>Kako koristiti aplikaciju?</h2>
             <ol>
@@ -78,15 +139,6 @@
                 <li>Prijavi se sa svojim korisničkim podacima</li>
                 <li>Uživaj u svim mogućnostima Promina-Drnis sustava</li>
             </ol>
-        </div>
-        
-        <div class="card">
-            <h2>Instalacija na početni zaslon</h2>
-            <p>Za brži pristup, instalirajte aplikaciju na početni zaslon:</p>
-            <ul>
-                <li><strong>Android (Chrome):</strong> Izbornik (tri točke) → Dodaj na početni zaslon</li>
-                <li><strong>iOS (Safari):</strong> Dijeljenje → Dodaj na početni zaslon</li>
-            </ul>
         </div>
         
         <div id="countdown-container" style="display: none;">
