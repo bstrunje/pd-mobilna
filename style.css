@@ -25,6 +25,9 @@ body {
     height: 120px;
     margin-bottom: 1rem;
     object-fit: contain;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 h1 {

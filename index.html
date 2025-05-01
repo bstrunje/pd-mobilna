@@ -12,25 +12,39 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <script>
-        // URL vaše web aplikacije - zamijenite sa stvarnim URL-om
+        // URL vaše web aplikacije
         const TARGET_URL = 'https://promina-drnis-app.vercel.app/login';
         
-        // Funkcija za preusmjeravanje - sada samo na klik
+        // Funkcija za preusmjeravanje
         function redirectToApp() {
             window.location.href = TARGET_URL;
         }
+
+        // Provjera je li aplikacija otvorena kao instalirana PWA
+        function isPWA() {
+            // Provjera je li aplikacija pokrenuta kao standalone (PWA s početnog zaslona)
+            return window.matchMedia('(display-mode: standalone)').matches || 
+                   window.navigator.standalone || // za iOS
+                   document.referrer.includes('android-app://');
+        }
         
-        // Dodajemo opciju automatskog preusmjeravanja nakon 10 sekundi
-        // ali samo ako je korisnik omogućio to u URL-u (npr. ?autoredirect=true)
+        // Učitavanje
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const autoRedirect = urlParams.get('autoredirect');
+            const noRedirect = urlParams.get('noredirect');
             
-            if (autoRedirect === 'true') {
+            // Ako je aplikacija pokrenuta kao PWA, odmah preusmjeri
+            if (isPWA() && noRedirect !== 'true') {
+                redirectToApp();
+                return;
+            }
+            
+            // Ako je zadano automatsko preusmjeravanje preko URL-a
+            if (autoRedirect === 'true' && noRedirect !== 'true') {
                 const countdownElement = document.getElementById('countdown');
-                let seconds = 10;
+                let seconds = 5;
                 
-                // Prikaz odbrojavanja
                 const countdownInterval = setInterval(function() {
                     countdownElement.textContent = seconds;
                     seconds--;
@@ -41,7 +55,6 @@
                     }
                 }, 1000);
                 
-                // Prikaz elementa s odbrojavanjem
                 document.getElementById('countdown-container').style.display = 'block';
             }
         };
@@ -77,7 +90,7 @@
         </div>
         
         <div id="countdown-container" style="display: none;">
-            <p>Automatsko preusmjeravanje za <span id="countdown">10</span> sekundi...</p>
+            <p>Automatsko preusmjeravanje za <span id="countdown">5</span> sekundi...</p>
         </div>
         
         <button onclick="redirectToApp()" class="primary-button">Pristupi aplikaciji</button>
