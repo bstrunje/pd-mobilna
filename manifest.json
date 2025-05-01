@@ -1,6 +1,6 @@
 {
-  "name": "PD-Mobilna",
-  "short_name": "PD-Mobilna",
+  "name": "PD Promina Drniš",
+  "short_name": "PD Promina",
   "description": "Aplikacija za članove Promina-Drnis",
   "start_url": "index.html",
   "display": "standalone",
@@ -12,7 +12,7 @@
       "src": "icons/grbPD_bez_natpisa_pozadina.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
