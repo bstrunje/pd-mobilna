@@ -9,7 +9,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icons/PD_icon.png",
+      "src": "icons/grbx512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
