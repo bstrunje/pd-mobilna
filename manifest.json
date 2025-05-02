@@ -1,6 +1,6 @@
 {
-  "name": "PD Promina Drniš",
-  "short_name": "PD Promina",
+  "name": "PD Promina",
+  "short_name": "PD",
   "description": "Aplikacija za članove Promina-Drnis",
   "start_url": "index.html",
   "display": "standalone",
@@ -9,13 +9,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "icons/grbPD_bez_natpisa_pozadina.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icons/icon-maskable.png",
+      "src": "icons/maskable_icon_x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
