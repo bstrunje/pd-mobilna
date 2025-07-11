@@ -1,5 +1,5 @@
 // Naziv cache-a
-const CACHE_NAME = 'pd-mobilna-v1';
+const CACHE_NAME = 'pd-mobilna-v2';
 
 // Datoteke koje ćemo spremiti u cache
 const urlsToCache = [
@@ -7,8 +7,8 @@ const urlsToCache = [
   './index.html',
   './style.css',
   './manifest.json',
-  './icons/icon-192x192.png',
-  './icons/icon-512x512.png'
+  './icons/grbx512.png',
+  './icons/PD_Promina.png'
 ];
 
 // Instalacija service workera
@@ -35,5 +35,20 @@ self.addEventListener('fetch', function(event) {
         return fetch(event.request);
       }
     )
+  );
+});
+
+// Aktivacija - briše stare cache-ove
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
 });

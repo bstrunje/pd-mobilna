@@ -52,6 +52,32 @@ body {
     opacity: 1;
 }
 
+.banner-buttons {
+    margin: 10px 0;
+    text-align: center;
+}
+
+.install-button {
+    background-color: #ffffff;
+    color: #0066cc;
+    border: 2px solid #ffffff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.install-button:hover {
+    background-color: #f0f0f0;
+}
+
+.manual-instructions {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
 .small-icon {
     width: 18px;
     height: 18px;
