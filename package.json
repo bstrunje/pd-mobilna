@@ -1,0 +1,19 @@
+{
+  "name": "pd-mobilna",
+  "version": "1.0.0",
+  "description": "PWA aplikacija za PD Promina Drniš",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Static site ready'",
+    "build": "echo 'Static site - no build step required'",
+    "dev": "echo 'Development ready'"
+  },
+  "keywords": [
+    "pwa",
+    "progressive-web-app",
+    "pd-promina",
+    "mobilna-aplikacija"
+  ],
+  "author": "PD Promina",
+  "license": "MIT"
+}
